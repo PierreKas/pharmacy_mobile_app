@@ -1,0 +1,38 @@
+CREATE TABLE `users` (
+    `Full_name` varchar(75) NOT NULL,
+    `phone_number` varchar(10) NOT NULL,
+    `role` varchar(50) DEFAULT 'SELLER',
+    `selling_point` varchar(50) DEFAULT NULL,
+    `pwd` varchar(255) DEFAULT NULL,
+    `user_state` varchar(10) DEFAULT NULL,
+    PRIMARY KEY (`phone_number`)
+);
+--------------------------------------------
+CREATE TABLE `products` (
+    `product_code` varchar(50) NOT NULL,
+    `product_name` varchar(50) DEFAULT NULL,
+    `purchase_price` float DEFAULT NULL,
+    `quantity` int DEFAULT NULL,
+    `expiry_date` date DEFAULT NULL,
+    PRIMARY KEY (`product_code`)
+);
+--------------------------------------------
+CREATE TABLE `selling` (
+    `bill_code` int DEFAULT 416924450,
+    `product_code` varchar(50) DEFAULT NULL,
+    `unit_price` float DEFAULT NULL,
+    `quantity` int DEFAULT NULL,
+    `selling_date` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `total_price` float DEFAULT NULL,
+    `seller_phone_number` varchar(10) NOT NULL,
+    `TransactionId` int NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`TransactionId`),
+    KEY `product_code` (`product_code`),
+    KEY `seller_phone_number` (`seller_phone_number`)
+);
+-------------------------------------------
+ALTER TABLE `selling` ADD CONSTRAINT `foreignKey` FOREIGN KEY (`product_code`) REFERENCES `products`(`product_code`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ALTER TABLE `selling` ADD CONSTRAINT `foreignKey2` FOREIGN KEY (`seller_phone_number`) REFERENCES `users`(`phone_number`) ON DELETE CASCADE ON UPDATE CASCADE; 
+-------------------------------------------
+INSERT INTO users (Full_name, phone_number, role, selling_point, pwd, user_state) 
+    VALUES ('admin_name','admin_phone','ADMIN','EVERYWHERE','admin_pwd','APPROVED');

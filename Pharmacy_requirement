@@ -1,0 +1,74 @@
+1. Login page with Admin default login(Make it the first page after onboarding)===>>Done
+2. After login I put a home page which will contain the menu  that guides to : ===>> done 
+	- Users	
+	- Product 
+	- Selling 
+	
+3. Only Admin can access all these menus ===>>Done
+4. The Manager can access product and Selling options ===>>Done
+5. The Seller will access only the Selling option ===>>Done
+6. Management of bills ===>>Done
+7. Management of users(APPROVED or DENIED,update role) ===>>Done
+8. Refreshment of pages  ===>>Almost done
+10. Autoriser l'utilisateur de créer un compte ===>>Not needed
+11. Alerte de la date d'expiration ===>>Almost done
+12. If the phone is not connected on internet, a message toasts
+13. Waza icon avant ku enda ku kila page(Load button) ===>>Done
+14. Phone number verification 
+15. Toast server error if any, when trying to login
+16. php script for photo and for server connectivity(just after onboarding page)
+17. Reduce Stock after selling ===>>Done
+18. Update and delete transaction
+19. Add search option on product list page
+20. Notification after download ===>> Done
+21. Signaler les produits quisont au point de finir dans le stock
+22. Ku chora notification
+23. colonne de quantity payé et qty used
+24. refuser update after download
+24. Diminuer la qty after update
+========================
+Some encountered issues:
+	- Downloaded files dissapear after a given duration
+	- Once the date is picked, any date is recognized true by the DB
+=============
+Ddisplay les utilisations de l'utilisateur unique
+==================================================================================================================
+// rows: _usersDetails.map((user) {
+                                          //   return DataRow(cells: [
+                                          //     DataCell(Text(user.fullName)),
+                                          //     DataCell(Text(user.phoneNumber)),
+                                          //     DataCell(Text(user.role!)),
+                                          //     DataCell(Text(user.sellingPoint)),
+                                          //     DataCell(Text(user.userState!)),
+                                          //   ]);
+                                          // }).toList(),
+==================================================
+=  DATABASE:
+=  Host: sql5.freesqldatabase.com
+=  Database name: sql5730314
+=  Database user: sql5730314
+=  Database password: PYW4dalp7b
+=  Port number: 3306
+================================
+
+
+====================================
+
+Security:
+--------
+1. secure networking protocol
+====> Secured
+
+2. SQL injection
+====> vulnerable on login
+
+3. Store sensitive data securely
+I must use "flutter_secure_storage" package to store sensitive data
+
+I can also hash the password with cript
+
+4. 
+
+===========
+readme:
+ToDoApp_flutter

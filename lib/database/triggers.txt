@@ -1,0 +1,33 @@
+DELIMITER $$
+CREATE TRIGGER decrease_product_quantity 
+BEFORE INSERT 
+ON selling 
+FOR EACH ROW
+BEGIN
+	
+	IF (SELECT quantity FROM products WHERE product_code=NEW.product_code) <=3
+	THEN
+	SIGNAL SQLSTATE '45000'
+	SET MESSAGE_TEXT='Few items remain in the stock';
+	ELSEIF NEW.quantity>=(SELECT quantity FROM products WHERE product_code=NEW.product_code) 
+	THEN
+	SIGNAL SQLSTATE '45000'
+	SET MESSAGE_TEXT='The stock is not enough';
+	ELSE
+		UPDATE products SET quantity= quantity - NEW.quantity WHERE product_code=NEW.product_code;
+	END IF;
+END$$
+
+-------------------------
+DELIMITER $$
+CREATE TRIGGER prevent_expiried_drugs 
+BEFORE INSERT 
+ON products 
+FOR EACH ROW
+BEGIN
+	IF NEW.expiry_date<=DATE_ADD(CURDATE(), INTERVAL 1 MONTH)
+	THEN
+	SIGNAL SQLSTATE '45000'
+	SET MESSAGE_TEXT='This medecine will expiry in one month or less';
+	END IF;
+END$$
